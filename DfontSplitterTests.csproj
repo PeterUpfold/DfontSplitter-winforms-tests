@@ -58,17 +58,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="ConversionTests.cs" />
+    <Compile Include="NonRedistTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestContext.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="SampleFiles\PTSans-Regular.otf.dfont">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleFiles\PTSans.ttc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\dfontsplitter-winforms\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="SampleFiles\" />
+    <ProjectReference Include="..\dfontsplitter-winforms\DfontSplitter.csproj">
+      <Project>{ac5f8564-f796-4986-80a6-a53e7eeff5f6}</Project>
+      <Name>DfontSplitter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -81,4 +94,7 @@
     <Error Condition="!Exists('..\dfontsplitter-winforms\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\dfontsplitter-winforms\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props'))" />
   </Target>
   <Import Project="..\dfontsplitter-winforms\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\dfontsplitter-winforms\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>powershell -ExecutionPolicy bypass -Command Copy-Item -Recurse -Force "$(ProjectDir)\ExternalTools" "$(TargetDir)\ExternalTools"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

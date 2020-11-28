@@ -37,3 +37,7 @@ Backup/
 # DfontSplitter specific
 BuildTools/*.exe
 ExternalTools/
+
+# Non-redistributable tests
+NonRedistTests.cs
+SampleFiles/Non-Redistributable

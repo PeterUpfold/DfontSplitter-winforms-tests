@@ -12,3 +12,9 @@ Please see [LICENSE.md](https://github.com/PeterUpfold/DfontSplitter-winforms/bl
 
 ## Developer Instructions
 
+Ensure you've followed the developer instructions for the main repository.
+
+Have the FontForge external tools copied into this project.
+
+`BuildTools\Copy-FontForgeFromMainProject.ps1 -Path ..\dfontsplitter-winforms`
+

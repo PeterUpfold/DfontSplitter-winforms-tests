@@ -22,6 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace DfontSplitterTests
 {
@@ -30,6 +31,20 @@ namespace DfontSplitterTests
     /// </summary>
     public class ConversionTests
     {
+        /// <summary>
+        /// Allow console output using this object.
+        /// </summary>
+        private readonly ITestOutputHelper testOutputHelper;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="testOutputHelper"></param>
+        public ConversionTests(ITestOutputHelper testOutputHelper)
+        {
+            this.testOutputHelper = testOutputHelper;
+        }
+
         [Fact]
         public void TestPTSansOTF()
         {
@@ -49,7 +64,10 @@ namespace DfontSplitterTests
             // run FontForge normalisation
             int fontForgeResult = Utils.RunFontForgeOnRelativePath(context, "PTSans.otf", out string normalisedPath);
 
-            Console.WriteLine(normalisedPath);
+            Assert.Equal(0, fontForgeResult);
+
+            string ptSansOutExpected = "a1037935b7f838b469fe2e02ec9a7088c09db20f3e1bfa632a24850b612955c1";
+            Assert.Equal(ptSansOutExpected, Utils.GetSHA256Hash(normalisedPath));
 
             Utils.TearDown(context);
         }

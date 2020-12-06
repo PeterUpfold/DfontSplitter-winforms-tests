@@ -95,6 +95,7 @@
   </Target>
   <Import Project="..\dfontsplitter-winforms\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\dfontsplitter-winforms\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>powershell -ExecutionPolicy bypass -Command Copy-Item -Recurse -Force "$(ProjectDir)\ExternalTools" "$(TargetDir)\ExternalTools"</PostBuildEvent>
+    <PostBuildEvent>powershell -ExecutionPolicy bypass -Command Copy-Item -Recurse -Force "$(ProjectDir)\ExternalTools" "$(TargetDir)\ExternalTools"
+powershell -ExecutionPolicy bypass -Command Copy-Item -Recurse -Force "$(ProjectDir)\SampleFiles\*" "$(TargetDir)\SampleFiles"</PostBuildEvent>
   </PropertyGroup>
 </Project>

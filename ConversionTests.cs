@@ -69,7 +69,21 @@ namespace DfontSplitterTests
             string ptSansOutExpected = "a1037935b7f838b469fe2e02ec9a7088c09db20f3e1bfa632a24850b612955c1";
             Assert.Equal(ptSansOutExpected, Utils.GetSHA256Hash(normalisedPath));
 
+            // check italic
+            string ptSansItalicExpected = "b84e4f1c297414a4d41d4d555da457d13f98a3a11b5e1612265ef15f9fc9a7c3";
+            Assert.Equal(ptSansItalicExpected, Utils.GetSHA256Hash("PTSansItalic.otf"));
+
+            // FontForge normalise italic
+            fontForgeResult = Utils.RunFontForgeOnRelativePath(context, "PTSansItalic.otf", out normalisedPath);
+            Assert.Equal(0, fontForgeResult);
+
+            string ptSansItalicOutExpected = "eb6687fd12fe67aa7b43d21ff7ee701a55b00be6121a4ca41c62b5db916da9ba";
+            Assert.Equal(ptSansItalicOutExpected, Utils.GetSHA256Hash(normalisedPath));
+
             Utils.TearDown(context);
         }
+
+
+
     }
 }
